@@ -29,6 +29,11 @@ server
         <meta charSet='utf-8' />
         <title>Welcome to Razzle</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.css"
+          integrity="sha256-lcqhJKENorK80v+ug14UGH5PFBhk9wMZ4tNQTq/IpFo="
+          crossorigin="anonymous" />
         ${
           assets.client.css
             ? `<link rel="stylesheet" href="${assets.client.css}">`
