@@ -1,16 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import {
-  Container,
-  Sidebar,
-  Segment,
-  Button,
-  Menu,
-  Image,
-  Icon,
-  Header,
-} from 'semantic-ui-react'
+import { Sidebar, Menu, Icon } from 'semantic-ui-react'
 
 export default function Menubar() {
   return (

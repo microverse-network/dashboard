@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Menu, Container, Icon } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 import Logo from 'components/Logo'
 
 export default function Navbar() {
