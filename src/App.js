@@ -13,6 +13,8 @@ import Navbar from 'components/Navbar'
 import Sidebar from 'components/Sidebar'
 
 import './App.css'
+import 'react-notifications/lib/notifications.css'
+import { NotificationContainer } from 'react-notifications'
 
 const App = () => (
   <Layout>
@@ -26,6 +28,7 @@ const App = () => (
       <Route exact path="/account-settings" component={AccountSettings} />
       <Route exact path="/payment" component={Payment} />
     </Switch>
+    <NotificationContainer />
   </Layout>
 )
 
