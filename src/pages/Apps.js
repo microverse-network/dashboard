@@ -76,7 +76,7 @@ Apps.defaultProps = {
     {
       _id: 'BVqz9Vyv51amjVEzFwXecRa8k023',
       hash: '0x543AB43A345BCD4D',
-      name: 'Main rope',
+      name: 'Main app',
       limit: '300 calls/min',
       version: '2.5',
       versions: [1.1, 1.2, 1.3, 2.1],
@@ -95,7 +95,7 @@ Apps.defaultProps = {
     {
       _id: 'BVqz9Vyv51amjVEzFwXecRa8k024',
       hash: '0x543AB43A345BCD4E',
-      name: 'Main rope2',
+      name: 'Main app2',
       limit: '300 calls/min',
       version: '2.3',
       versions: [1.1, 1.2, 1.3, 2.1],

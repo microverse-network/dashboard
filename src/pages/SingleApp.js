@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import AppDetails from 'pages/AppDetails'
 import AppLogs from 'pages/AppLogs'
 import AppVersionHistory from 'pages/AppVersionHistory'
-import { Icon, Button, Header, Tab } from 'semantic-ui-react'
+import { Icon, Button, Header, Tab, Container } from 'semantic-ui-react'
 
 const panes = [
   {
@@ -21,10 +21,8 @@ const panes = [
 ]
 
 class SingleApp extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = { activeIndex: 0 }
+  state = {
+    activeIndex: 0,
   }
 
   componentWillMount() {
@@ -58,7 +56,7 @@ class SingleApp extends React.Component {
     }
   }
 
-  backButtonOnClick() {
+  onBackButtonClick = () => {
     this.props.history.push('/apps')
   }
 
@@ -67,8 +65,8 @@ class SingleApp extends React.Component {
     const { activeIndex } = this.state
 
     return (
-      <Layout style={{ width: '50%', padding: 40 }}>
-        <Button animated onClick={this.backButtonOnClick.bind(this)}>
+      <Container fluid>
+        <Button animated onClick={this.onBackButtonClick}>
           <Button.Content visible>Apps</Button.Content>
           <Button.Content hidden>
             <Icon name="left arrow" />
@@ -86,12 +84,10 @@ class SingleApp extends React.Component {
           panes={panes}
           onTabChange={this.onTabChange.bind(this)}
         />
-      </Layout>
+      </Container>
     )
   }
 }
-
-const Layout = ({ style, children }) => <div style={style}>{children}</div>
 
 SingleApp.propTypes = {
   app: PropTypes.shape({
@@ -115,7 +111,7 @@ SingleApp.defaultProps = {
   app: {
     _id: 'BVqz9Vyv51amjVEzFwXecRa8k023',
     hash: '0x543AB43A345BCD4D',
-    name: 'Main rope',
+    name: 'Main app',
     limit: '300 calls/min',
     version: '2.5',
     meta: {
