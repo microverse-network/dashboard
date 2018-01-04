@@ -15,7 +15,7 @@ class Apps extends React.Component {
       return <div>NO APP FOUND</div>
     }
     return (
-      <Container fluid={true} style={{ padding: 40 }}>
+      <Container fluid={true}>
         <Grid divided="vertically">
           <Grid.Row columns={4}>
             {apps.map(app => {
