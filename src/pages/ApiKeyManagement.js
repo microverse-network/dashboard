@@ -1,15 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Divider, Item, Button } from 'semantic-ui-react'
 import { NotificationManager } from 'react-notifications'
+
+import { Divider, Item, Button } from 'semantic-ui-react'
 
 import AreYouSureModal from 'components/AreYouSureModal'
 import CopyToClipboard from 'copy-to-clipboard'
 
-class ApiKeyManagement extends React.Component {
-  state = { isModalOpen: false }
+export default class ApiKeyManagement extends React.Component {
+  static defaultProps = {
+    keys: [
+      {
+        key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a3d',
+        createdAt: '29 days ago',
+        disabled: false,
+      },
+      {
+        key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a32',
+        createdAt: '12 days ago',
+        disabled: true,
+      },
+    ],
+  }
 
-  closeModal = () => this.setState({ isModalOpen: false })
+  static propTypes = {
+    keys: PropTypes.array,
+  }
+
+  state = {
+    isModalOpen: false,
+  }
+
+  onCloseClick = () => this.setState({ isModalOpen: false })
 
   onRemoveClick = () => this.setState({ isModalOpen: true })
 
@@ -30,7 +52,7 @@ class ApiKeyManagement extends React.Component {
     const { keys } = this.props
     const { isModalOpen } = this.state
     return (
-      <Layout style={{ width: '50%', padding: 40 }}>
+      <div>
         <Button
           circular
           icon="plus"
@@ -48,8 +70,8 @@ class ApiKeyManagement extends React.Component {
                   <Item.Meta>Updated {createdAt}</Item.Meta>
                 </Item.Content>
                 <Item.Content>
-                  <Button basic>Disable</Button>
                   <Button
+                    negative
                     basic
                     icon="trash outline"
                     floated="right"
@@ -61,10 +83,13 @@ class ApiKeyManagement extends React.Component {
                     floated="right"
                     onClick={this.onClipboardClick.bind(this, key)}
                   />
+                  <Button basic floated="right">
+                    Disable
+                  </Button>
                   <AreYouSureModal
                     content={'Do you really want to remove this key?'}
                     onYesClick={this.removeKey}
-                    onCloseClick={this.closeModal}
+                    onCloseClick={this.onCloseClick}
                     isOpen={isModalOpen}
                   />
                 </Item.Content>
@@ -72,30 +97,7 @@ class ApiKeyManagement extends React.Component {
             )
           })}
         </Item.Group>
-      </Layout>
+      </div>
     )
   }
 }
-
-const Layout = ({ children, style }) => <div style={style}>{children}</div>
-
-ApiKeyManagement.defaultProps = {
-  keys: [
-    {
-      key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a3d',
-      createdAt: '29 days ago',
-      disabled: false,
-    },
-    {
-      key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a32',
-      createdAt: '12 days ago',
-      disabled: true,
-    },
-  ],
-}
-
-ApiKeyManagement.propTypes = {
-  keys: PropTypes.array,
-}
-
-export default ApiKeyManagement
