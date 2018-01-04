@@ -7,7 +7,6 @@ import Dashboard from 'pages/Dashboard'
 import YourApps from 'pages/YourApps'
 import ApiKeyManagement from 'pages/ApiKeyManagement'
 import AccountSettings from 'pages/AccountSettings'
-import Payment from 'pages/Payment'
 
 import Layout from 'components/Layout'
 
@@ -23,7 +22,6 @@ const App = () => (
       <Route exact path="/apps/:name?" component={YourApps} />
       <Route exact path="/api-key" component={ApiKeyManagement} />
       <Route exact path="/account-settings" component={AccountSettings} />
-      <Route exact path="/payment" component={Payment} />
     </Switch>
     <NotificationContainer />
   </Layout>

@@ -42,10 +42,6 @@ export default class Sidebar extends Component {
           <Icon name="setting" />
           Account Settings
         </Menu.Item>
-        <Menu.Item as={Link} link to="/payment">
-          <Icon name="payment" />
-          Payment
-        </Menu.Item>
       </SemanticSidebar>
     )
   }
