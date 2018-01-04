@@ -9,6 +9,7 @@
     "start:prod": "NODE_ENV=production node build/server.js"
   },
   "dependencies": {
+    "copy-to-clipboard": "^3.0.8",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "prop-types": "^15.6.0",
@@ -16,6 +17,7 @@
     "razzle": "^0.8.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-notifications": "^1.4.3",
     "react-router-dom": "^4.2.2",
     "semantic-ui-react": "^0.77.1",
     "victory": "^0.24.3"
