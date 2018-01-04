@@ -7,10 +7,8 @@ import Dashboard from 'pages/Dashboard'
 import YourApps from 'pages/YourApps'
 import ApiKeyManagement from 'pages/ApiKeyManagement'
 import AccountSettings from 'pages/AccountSettings'
-import Payment from 'pages/Payment'
 
-import Navbar from 'components/Navbar'
-import Sidebar from 'components/Sidebar'
+import Layout from 'components/Layout'
 
 import './App.css'
 import 'react-notifications/lib/notifications.css'
@@ -18,20 +16,15 @@ import { NotificationContainer } from 'react-notifications'
 
 const App = () => (
   <Layout>
-    <Navbar />
-    <Sidebar />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/apps/:name?" component={YourApps} />
       <Route exact path="/api-key" component={ApiKeyManagement} />
       <Route exact path="/account-settings" component={AccountSettings} />
-      <Route exact path="/payment" component={Payment} />
     </Switch>
     <NotificationContainer />
   </Layout>
 )
 
 export default App
-
-const Layout = ({ children }) => <div>{children}</div>

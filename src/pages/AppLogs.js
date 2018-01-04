@@ -6,13 +6,14 @@ export default function AppLogs({ logs }) {
   if (!logs.length) {
     return <div>No Logs found</div>
   }
+
   return (
-    <Table unstackable>
+    <Table celled striped>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>App</Table.HeaderCell>
           <Table.HeaderCell>Timestamp</Table.HeaderCell>
-          <Table.HeaderCell textAlign="right">Message</Table.HeaderCell>
+          <Table.HeaderCell>Message</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -20,9 +21,11 @@ export default function AppLogs({ logs }) {
         {logs.map(({ _id, app, timestamp, message }) => {
           return (
             <Table.Row key={_id}>
-              <Table.Cell>{app}</Table.Cell>
-              <Table.Cell>{timestamp}</Table.Cell>
-              <Table.Cell textAlign="right">{message}</Table.Cell>
+              <Table.Cell collapsing>{app}</Table.Cell>
+              <Table.Cell collapsing>{timestamp}</Table.Cell>
+              <Table.Cell>
+                <code>{message}</code>
+              </Table.Cell>
             </Table.Row>
           )
         })}
@@ -39,39 +42,39 @@ AppLogs.defaultProps = {
   logs: [
     {
       _id: 1,
-      app: 'Main rope',
+      app: 'Main app',
       timestamp: new Date().toString(),
-      message: '171228/195556.769 [response]: [1;32mget[0m /healthcheck {} [32m200[0m (2ms)',
+      message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
     },
     {
       _id: 2,
-      app: 'Main rope',
+      app: 'Main app',
       timestamp: new Date().toString(),
-      message: '171228/195556.769 [response]: [1;32mget[0m /healthcheck {} [32m200[0m (2ms)',
+      message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
     },
     {
       _id: 3,
-      app: 'Main rope',
+      app: 'Main app',
       timestamp: new Date().toString(),
-      message: '171228/195556.769 [response]: [1;32mget[0m /healthcheck {} [32m200[0m (2ms)',
+      message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
     },
     {
       _id: 4,
-      app: 'Main rope',
+      app: 'Main app',
       timestamp: new Date().toString(),
-      message: '171228/195556.769 [response]: [1;32mget[0m /healthcheck {} [32m200[0m (2ms)',
+      message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
     },
     {
       _id: 5,
-      app: 'Main rope',
+      app: 'Main app',
       timestamp: new Date().toString(),
-      message: '171228/195556.769 [response]: [1;32mget[0m /healthcheck {} [32m200[0m (2ms)',
+      message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
     },
     {
       _id: 6,
-      app: 'Main rope',
+      app: 'Main app',
       timestamp: new Date().toString(),
-      message: '171228/195556.769 [response]: [1;32mget[0m /healthcheck {} [32m200[0m (2ms)',
+      message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
     },
   ],
 }
