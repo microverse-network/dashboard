@@ -1,103 +1,139 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { NotificationManager } from 'react-notifications'
-
-import { Divider, Item, Button } from 'semantic-ui-react'
-
+import { filter } from 'lodash'
+import { Table, Button, Input, Grid } from 'semantic-ui-react'
+import { loadApiKeys } from 'utils/ApiClient'
 import AreYouSureModal from 'components/AreYouSureModal'
 import CopyToClipboard from 'copy-to-clipboard'
 
-export default class ApiKeyManagement extends React.Component {
-  static defaultProps = {
-    keys: [
-      {
-        key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a3d',
-        createdAt: '29 days ago',
-        disabled: false,
-      },
-      {
-        key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a32',
-        createdAt: '12 days ago',
-        disabled: true,
-      },
-    ],
-  }
-
+class ApiKeyManagement extends React.Component {
   static propTypes = {
     keys: PropTypes.array,
   }
 
   state = {
     isModalOpen: false,
+    keys: null,
+    keyName: '',
+  }
+
+  componentWillMount() {
+    loadApiKeys()
+      .then(keys => {
+        this.setState({ keys })
+      })
+      .catch(err => {
+        // TODO add notification
+        this.setState({ keys: [] })
+      })
   }
 
   onCloseClick = () => this.setState({ isModalOpen: false })
 
-  onRemoveClick = () => this.setState({ isModalOpen: true })
+  onRemoveClick = () => {
+    this.setState({ isModalOpen: true })
+  }
 
-  onClipboardClick = key => {
-    NotificationManager.success('Copied!', key)
+  onClipboardClick = (name, key) => {
+    NotificationManager.success(`${name} copied!`)
     CopyToClipboard(key)
   }
 
-  onPlusButtonClick() {
-    console.log('plus button clicked!')
+  onPlusButtonClick = () => {
+    const { keyName } = this.state
+    const newKey = {
+      name: keyName,
+      key: 'dcce6bef-73c4-4ef3-bba6-1c1d5e583a32',
+      createdAt: new Date(),
+    }
+    var { keys } = this.state
+    keys.push(newKey)
+    this.setState({ keyName: '', keys })
   }
 
-  removeKey = () => {
-    this.setState({ isModalOpen: false })
+  removeKey = keyName => {
+    const { keys } = this.state
+    const newKeys = filter(keys, ({ name }) => keyName !== name)
+    this.setState({ isModalOpen: false, keys: newKeys })
+  }
+
+  onInputChange = event => {
+    const { value: keyName } = event.target
+    this.setState({ keyName })
   }
 
   render() {
-    const { keys } = this.props
-    const { isModalOpen } = this.state
+    const { keyName, keys, isModalOpen } = this.state
+    if (!keys) {
+      return <div>Fetching your api keys</div>
+    }
+
     return (
       <div>
-        <Button
-          circular
-          icon="plus"
-          floated="right"
-          onClick={this.onPlusButtonClick}
-          style={{ marginBottom: 20 }}
-        />
-        <Divider clearing />
-        <Item.Group divided>
-          {keys.map(({ key, createdAt, disabled }) => {
-            return (
-              <Item key={key}>
-                <Item.Content>
-                  <Item.Header>{key}</Item.Header>
-                  <Item.Meta>Updated {createdAt}</Item.Meta>
-                </Item.Content>
-                <Item.Content>
-                  <Button
-                    negative
-                    basic
-                    icon="trash outline"
-                    floated="right"
-                    onClick={this.onRemoveClick}
-                  />
-                  <Button
-                    basic
-                    icon="clipboard"
-                    floated="right"
-                    onClick={this.onClipboardClick.bind(this, key)}
-                  />
-                  <Button basic floated="right">
-                    Disable
-                  </Button>
-                  <AreYouSureModal
-                    content={'Do you really want to remove this key?'}
-                    onYesClick={this.removeKey}
-                    onCloseClick={this.onCloseClick}
-                    isOpen={isModalOpen}
-                  />
-                </Item.Content>
-              </Item>
-            )
-          })}
-        </Item.Group>
+        <Table basic="very" striped>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+              <Table.HeaderCell>Value</Table.HeaderCell>
+              <Table.HeaderCell>Actions</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {keys.map(({ name, key, createdAt }) => {
+              return (
+                <Table.Row key={name}>
+                  <Table.Cell collapsing>{name}</Table.Cell>
+                  <Table.Cell>{key}</Table.Cell>
+                  <Table.Cell collapsing>
+                    <Button
+                      basic
+                      icon="clipboard"
+                      onClick={this.onClipboardClick.bind(this, name, key)}
+                    />
+                    <Button
+                      negative
+                      basic
+                      icon="trash outline"
+                      onClick={this.onRemoveClick.bind(this, name)}
+                    />
+                    <AreYouSureModal
+                      content={'Do you really want to remove this key?'}
+                      onYesClick={this.removeKey.bind(this, name)}
+                      onCloseClick={this.onCloseClick}
+                      isOpen={isModalOpen}
+                    />
+                  </Table.Cell>
+                </Table.Row>
+              )
+            })}
+          </Table.Body>
+        </Table>
+        <Grid>
+          <Grid.Column width={14}>
+            <Input
+              ref={this.handleRef}
+              placeholder="Add New Api Key..."
+              value={keyName}
+              fluid
+              basic="very"
+              onChange={this.onInputChange}
+            />
+          </Grid.Column>
+          <Grid.Column width={2}>
+            <Button
+              icon="plus"
+              primary
+              content="Add New Key"
+              floated="right"
+              onClick={this.onPlusButtonClick}
+            />
+          </Grid.Column>
+        </Grid>
       </div>
     )
   }
 }
+
+export default ApiKeyManagement
