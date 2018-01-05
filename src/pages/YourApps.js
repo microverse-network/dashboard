@@ -8,7 +8,7 @@ export default function YourApps() {
   return (
     <Switch>
       <Route exact path="/apps" component={Apps} />
-      <Route path="/apps/:name?" component={SingleApp} />
+      <Route path="/apps/:appId/:name?" component={SingleApp} />
     </Switch>
   )
 }

@@ -4,51 +4,11 @@ import { Table, Button, Icon } from 'semantic-ui-react'
 
 export default class AppVersionHistory extends Component {
   static propTypes = {
-    app: PropTypes.shape({
-      versions: PropTypes.arrayOf(PropTypes.object),
-    }),
-  }
-
-  // TODO: remove
-  static defaultProps = {
-    app: {
-      versions: [
-        {
-          _id: 1,
-          version: 0.1,
-          timestamp: new Date().toString(),
-        },
-        {
-          _id: 2,
-          version: 0.2,
-          timestamp: new Date().toString(),
-        },
-        {
-          _id: 3,
-          version: 0.3,
-          timestamp: new Date().toString(),
-        },
-        {
-          _id: 4,
-          version: 0.4,
-          timestamp: new Date().toString(),
-        },
-        {
-          _id: 5,
-          version: 0.5,
-          timestamp: new Date().toString(),
-        },
-        {
-          _id: 6,
-          version: 0.6,
-          timestamp: new Date().toString(),
-        },
-      ],
-    },
+    versions: PropTypes.arrayOf(PropTypes.object),
   }
 
   render() {
-    const { versions } = this.props.app
+    const { versions } = this.props
 
     if (!versions.length) {
       return <div>No Logs found</div>
