@@ -4,13 +4,13 @@ import { Table, Button, Icon } from 'semantic-ui-react'
 
 export default class AppVersionHistory extends Component {
   static propTypes = {
-    versionhistory: PropTypes.arrayOf(PropTypes.object),
+    versions: PropTypes.arrayOf(PropTypes.object),
   }
 
   render() {
-    const { versionhistory } = this.props
+    const { versions } = this.props
 
-    if (!versionhistory.length) {
+    if (!versions.length) {
       return <div>No Logs found</div>
     }
 
@@ -25,7 +25,7 @@ export default class AppVersionHistory extends Component {
         </Table.Header>
 
         <Table.Body>
-          {versionhistory.map(({ _id, version, timestamp }) => {
+          {versions.map(({ _id, version, timestamp }) => {
             return (
               <Table.Row key={_id}>
                 <Table.Cell collapsing>v{version}</Table.Cell>

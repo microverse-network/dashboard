@@ -87,7 +87,7 @@ class SingleApp extends React.Component {
       },
       {
         menuItem: 'Version History',
-        render: () => <AppVersionHistory versionhistory={app.versionhistory} />,
+        render: () => <AppVersionHistory versions={app.versionhistory} />,
       },
     ]
   }
