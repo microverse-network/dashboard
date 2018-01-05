@@ -1,17 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import { loadApps } from 'utils/ApiClient'
 import { Button, Label, Container, Grid, Card } from 'semantic-ui-react'
 
 class Apps extends React.Component {
-  cardOnClick(cardId) {
-    this.props.history.push('/apps/details')
+  state = { apps: null }
+  componentWillMount() {
+    loadApps()
+      .then(apps => {
+        this.setState({ apps })
+      })
+      .catch(error => {
+        // TODO add notification
+        this.setState({ apps: [] })
+      })
+  }
+  cardOnClick(_id) {
+    this.props.history.push('/apps/' + _id + '/details')
   }
 
   render() {
-    const { apps } = this.props
-
-    if (!apps.length) {
+    const { apps } = this.state
+    if (!apps) {
       return <div>NO APP FOUND</div>
     }
     return (
@@ -69,49 +79,6 @@ class Apps extends React.Component {
 
 Apps.propTypes = {
   apps: PropTypes.array,
-}
-
-Apps.defaultProps = {
-  apps: [
-    {
-      _id: 'BVqz9Vyv51amjVEzFwXecRa8k023',
-      hash: '0x543AB43A345BCD4D',
-      name: 'Main app',
-      limit: '300 calls/min',
-      version: '2.5',
-      versions: [1.1, 1.2, 1.3, 2.1],
-      meta: {
-        created: new Date(),
-      },
-      labels: [],
-      healthcheck: 'Running',
-      environment: 'Chrome 63.0',
-      region: 'Node',
-      methods: [
-        { name: 'Square', signature: 'Number, Function' },
-        { name: 'Lookup', signature: 'String | Object, Function' },
-      ],
-    },
-    {
-      _id: 'BVqz9Vyv51amjVEzFwXecRa8k024',
-      hash: '0x543AB43A345BCD4E',
-      name: 'Main app2',
-      limit: '300 calls/min',
-      version: '2.3',
-      versions: [1.1, 1.2, 1.3, 2.1],
-      meta: {
-        created: new Date(),
-      },
-      labels: [],
-      healthcheck: 'Running',
-      environment: 'Chrome 63.0',
-      region: 'Node',
-      methods: [
-        { name: 'Square', signature: 'Number, Function' },
-        { name: 'Lookup', signature: 'String | Object, Function' },
-      ],
-    },
-  ],
 }
 
 export default Apps
