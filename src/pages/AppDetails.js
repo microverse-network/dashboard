@@ -6,7 +6,7 @@ import { Header } from 'semantic-ui-react'
 import AppMeta from 'components/AppMeta'
 import AppMethods from 'components/AppMethods'
 
-export default class AppDetails extends Component {
+class AppDetails extends Component {
   static propTypes = {
     app: PropTypes.shape({
       _id: PropTypes.string,
@@ -25,28 +25,6 @@ export default class AppDetails extends Component {
     }),
   }
 
-  // TODO: remove
-  static defaultProps = {
-    app: {
-      _id: 'BVqz9Vyv51amjVEzFwXecRa8k023',
-      hash: '0x543AB43A345BCD4D',
-      name: 'Main app',
-      limit: '300 calls/min',
-      version: '2.5',
-      meta: {
-        created: new Date(),
-      },
-      labels: [],
-      healthcheck: 'Running',
-      environment: 'Chrome 63.0',
-      region: 'Node',
-      methods: [
-        { name: 'square', signature: 'Number, Function' },
-        { name: 'lookup', signature: 'String | Object, Function' },
-      ],
-    },
-  }
-
   render() {
     const { app } = this.props
 
@@ -59,3 +37,5 @@ export default class AppDetails extends Component {
     )
   }
 }
+
+export default AppDetails
