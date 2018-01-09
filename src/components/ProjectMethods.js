@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Label, Button, Icon } from 'semantic-ui-react'
 
-export default class AppMethods extends Component {
+export default class ProjectMethods extends Component {
   static propTypes = {
-    app: PropTypes.shape({
+    project: PropTypes.shape({
       methods: PropTypes.arrayOf(PropTypes.object),
     }),
   }
@@ -33,7 +33,7 @@ export default class AppMethods extends Component {
   }
 
   render() {
-    const { methods } = this.props.app
+    const { methods } = this.props.project
 
     return (
       <Table celled striped definition>

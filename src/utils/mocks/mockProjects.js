@@ -1,8 +1,8 @@
-const mockApps = [
+const mockProjects = [
   {
     _id: 'BVqz9Vyv51amjVEzFwXecRa8k023',
     hash: '0x543AB43A345BCD4D',
-    name: 'Main app',
+    name: 'Service1',
     limit: '300 calls/min',
     version: '2.5',
     versions: [1.1, 1.2, 1.3, 2.1],
@@ -20,37 +20,37 @@ const mockApps = [
     logs: [
       {
         _id: 1,
-        app: 'Main app',
+        service: 'Service1',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 2,
-        app: 'Main app',
+        service: 'Service1',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 3,
-        app: 'Main app',
+        service: 'Service1',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 4,
-        app: 'Main app',
+        service: 'Service1',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 5,
-        app: 'Main app',
+        service: 'Service1',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 6,
-        app: 'Main app',
+        service: 'Service1',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
@@ -91,7 +91,7 @@ const mockApps = [
   {
     _id: 'BVqz9Vyv51amjVEzFwXecRa8k024',
     hash: '0x543AB43A345BCD4E',
-    name: 'Main app2',
+    name: 'Service2',
     limit: '300 calls/min',
     version: '2.3',
     versions: [1.1, 1.2, 1.3, 2.1],
@@ -109,37 +109,37 @@ const mockApps = [
     logs: [
       {
         _id: 1,
-        app: 'Main app',
+        service: 'Service2',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 2,
-        app: 'Main app',
+        service: 'Service2',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 3,
-        app: 'Main app',
+        service: 'Service2',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 4,
-        app: 'Main app',
+        service: 'Service2',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 5,
-        app: 'Main app',
+        service: 'Service2',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
       {
         _id: 6,
-        app: 'Main app',
+        service: 'Service2',
         timestamp: new Date().toString(),
         message: '171228/195556.769 [response]: get /healthcheck {}  (2ms)',
       },
@@ -179,4 +179,4 @@ const mockApps = [
   },
 ]
 
-export default mockApps
+export default mockProjects

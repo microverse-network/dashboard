@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { fetchApp } from 'utils/ApiClient'
+import { fetchProject } from 'utils/ApiClient'
 import { Link } from 'react-router-dom'
 import { Icon, Tab, Container, Menu } from 'semantic-ui-react'
 
-import AppDetails from 'pages/AppDetails'
-import AppLogs from 'pages/AppLogs'
-import AppVersionHistory from 'pages/AppVersionHistory'
+import ServiceDetails from 'pages/ServiceDetails'
+import ServiceLogs from 'pages/ServiceLogs'
+import ServiceVersionHistory from 'pages/ServiceVersionHistory'
 
-class SingleApp extends React.Component {
+class SingleProject extends React.Component {
   static propTypes = {
-    app: PropTypes.shape({
+    project: PropTypes.shape({
       _id: PropTypes.string,
       hash: PropTypes.string,
       name: PropTypes.string,
@@ -29,21 +29,21 @@ class SingleApp extends React.Component {
 
   state = {
     activeIndex: 0,
-    appId: null,
-    app: null,
+    projectId: null,
+    project: null,
   }
 
   componentWillMount() {
-    const { match: { params: { appId, name } } } = this.props
-    fetchApp(appId)
-      .then(app => {
-        this.setState({ app })
+    const { match: { params: { projectId, name } } } = this.props
+    fetchProject(projectId)
+      .then(project => {
+        this.setState({ project })
       })
       .catch(err => {
         // TODO add notification
-        this.setState({ app: {} })
+        this.setState({ project: {} })
       })
-    this.setState({ appId })
+    this.setState({ projectId })
     switch (name) {
       case 'logs':
         this.setState({ activeIndex: 1 })
@@ -57,17 +57,17 @@ class SingleApp extends React.Component {
   }
 
   onTabChange(event, { activeIndex }) {
-    const { appId } = this.state
+    const { projectId } = this.state
     this.setState({ activeIndex })
     switch (activeIndex) {
       case 0:
-        this.props.history.push('/apps/' + appId + '/details')
+        this.props.history.push('/projects/' + projectId + '/details')
         break
       case 1:
-        this.props.history.push('/apps/' + appId + '/logs')
+        this.props.history.push('/projects/' + projectId + '/logs')
         break
       case 2:
-        this.props.history.push('/apps/' + appId + '/version-history')
+        this.props.history.push('/projects/' + projectId + '/version-history')
         break
       default:
         break
@@ -75,39 +75,41 @@ class SingleApp extends React.Component {
   }
 
   getPanes() {
-    const { app } = this.state
+    const { project } = this.state
     return [
       {
         menuItem: 'Details',
-        render: () => <AppDetails app={app} />,
+        render: () => <ServiceDetails project={project} />,
       },
       {
         menuItem: 'Logs',
-        render: () => <AppLogs logs={app.logs} />,
+        render: () => <ServiceLogs logs={project.logs} />,
       },
       {
         menuItem: 'Version History',
-        render: () => <AppVersionHistory versions={app.versionhistory} />,
+        render: () => (
+          <ServiceVersionHistory versions={project.versionhistory} />
+        ),
       },
     ]
   }
 
   render() {
-    const { appId, app, activeIndex } = this.state
+    const { projectId, project, activeIndex } = this.state
 
-    if (!appId || !app) {
-      return <div>FETCHING APP</div>
+    if (!projectId || !project) {
+      return <div>FETCHING Project</div>
     }
 
     return (
       <Container fluid>
         <Menu borderless>
-          <Menu.Item inverted as={Link} link to="/apps">
+          <Menu.Item inverted={'true'} as={Link} link to="/projects">
             <Icon name="left arrow" />
-            Apps
+            Projects
           </Menu.Item>
           <Menu.Item>
-            <Menu.Header as="h2">{app.name}</Menu.Header>
+            <Menu.Header as="h2">{project.name}</Menu.Header>
           </Menu.Item>
         </Menu>
         <Tab
@@ -121,4 +123,4 @@ class SingleApp extends React.Component {
   }
 }
 
-export default SingleApp
+export default SingleProject

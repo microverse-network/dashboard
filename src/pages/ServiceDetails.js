@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-
 import { Header } from 'semantic-ui-react'
+import ProjectMeta from 'components/ProjectMeta'
+import ProjectMethods from 'components/ProjectMethods'
 
-import AppMeta from 'components/AppMeta'
-import AppMethods from 'components/AppMethods'
-
-class AppDetails extends Component {
+class ServiceDetails extends Component {
   static propTypes = {
-    app: PropTypes.shape({
+    project: PropTypes.shape({
       _id: PropTypes.string,
       hash: PropTypes.string,
       name: PropTypes.string,
@@ -26,16 +24,16 @@ class AppDetails extends Component {
   }
 
   render() {
-    const { app } = this.props
+    const { project } = this.props
 
     return (
       <div>
-        <AppMeta app={app} />
+        <ProjectMeta project={project} />
         <Header as="h4">Methods:</Header>
-        <AppMethods app={app} />
+        <ProjectMethods project={project} />
       </div>
     )
   }
 }
 
-export default AppDetails
+export default ServiceDetails

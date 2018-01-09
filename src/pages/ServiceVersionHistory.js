@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Table, Button, Icon } from 'semantic-ui-react'
 
-export default class AppVersionHistory extends Component {
+export default class ServiceVersionHistory extends Component {
   static propTypes = {
     versions: PropTypes.arrayOf(PropTypes.object),
   }
