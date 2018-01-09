@@ -30,9 +30,9 @@ export default class Sidebar extends Component {
           <Icon name="dashcube" />
           Dashboard
         </Menu.Item>
-        <Menu.Item as={Link} link to="/apps">
+        <Menu.Item as={Link} link to="/projects">
           <Icon name="browser" />
-          Your Apps
+          Projects
         </Menu.Item>
         <Menu.Item as={Link} link to="/api-key">
           <Icon name="key" />

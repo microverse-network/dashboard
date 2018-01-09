@@ -1,34 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { loadApps } from 'utils/ApiClient'
+import { loadProjects } from 'utils/ApiClient'
 import { Button, Label, Container, Grid, Card } from 'semantic-ui-react'
 
-class Apps extends React.Component {
-  state = { apps: null }
+class Projects extends React.Component {
+  state = { projects: null }
   componentWillMount() {
-    loadApps()
-      .then(apps => {
-        this.setState({ apps })
+    loadProjects()
+      .then(projects => {
+        this.setState({ projects })
       })
       .catch(error => {
         // TODO add notification
-        this.setState({ apps: [] })
+        this.setState({ projects: [] })
       })
   }
-  cardOnClick(_id) {
-    this.props.history.push('/apps/' + _id + '/details')
+  cardOnClick = _id => {
+    this.props.history.push('/projects/' + _id + '/details')
+  }
+
+  onCreateNewAppClick = () => {
+    this.props.history.push('/newproject')
   }
 
   render() {
-    const { apps } = this.state
-    if (!apps) {
+    const { projects } = this.state
+    if (!projects) {
       return <div>NO APP FOUND</div>
     }
     return (
       <Container fluid={true}>
+        <Button
+          circular
+          basic
+          color="red"
+          icon="plus"
+          size="massive"
+          floated="right"
+          onClick={this.onCreateNewAppClick}
+        />
         <Grid divided="vertically">
           <Grid.Row columns={4}>
-            {apps.map(app => {
+            {projects.map(app => {
               const {
                 _id,
                 name,
@@ -77,8 +90,8 @@ class Apps extends React.Component {
   }
 }
 
-Apps.propTypes = {
-  apps: PropTypes.array,
+Projects.propTypes = {
+  projects: PropTypes.array,
 }
 
-export default Apps
+export default Projects

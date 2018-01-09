@@ -4,10 +4,10 @@ import Switch from 'react-router-dom/Switch'
 
 import Home from 'pages/Home'
 import Dashboard from 'pages/Dashboard'
-import YourApps from 'pages/YourApps'
+import Projects from 'pages/Projects'
 import ApiKeyManagement from 'pages/ApiKeyManagement'
 import AccountSettings from 'pages/AccountSettings'
-
+import NewProject from 'pages/NewProject'
 import Layout from 'components/Layout'
 
 import './App.css'
@@ -19,7 +19,8 @@ const App = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/apps/:appId?/:name?" component={YourApps} />
+      <Route exact path="/projects/:projectId?/:name?" component={Projects} />
+      <Route exact path="/newproject" component={NewProject} />
       <Route exact path="/api-key" component={ApiKeyManagement} />
       <Route exact path="/account-settings" component={AccountSettings} />
     </Switch>
