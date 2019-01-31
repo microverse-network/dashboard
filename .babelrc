@@ -1,0 +1,9 @@
+{
+  "presets": ["razzle"],
+  "plugins": [
+    // breaks bootstrap components
+    // should look at it later.
+    // "react-require",
+    "react-html-attrs"
+  ]
+}
